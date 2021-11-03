@@ -1,7 +1,7 @@
 document.body.style.background = "#212326";
 let board = [
   [0, 0, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 1, 1, 1, 1],
+  [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -11,6 +11,7 @@ let board = [
 ];
 let canvas = document.getElementById("main");
 let ctx = canvas.getContext("2d");
+var canvasPos = canvas.getBoundingClientRect();
 
 let boardWidth = canvas.clientWidth;
 let boardHeight = canvas.clientHeight;
@@ -25,7 +26,14 @@ board.forEach((col,colI)=>{
   })
 })
 
+function printMousePos(event) {
+  correctedMousePosX = event.clientX - canvasPos.left;
+  correctedMousePosY = event.clientY - canvasPos.top;
+}
 
+
+
+document.addEventListener("click", printMousePos);
 
 setInterval(function () {
   render();
